@@ -58,28 +58,31 @@ d1c3556 feat: implement add function
 
 ## Задание 4. Multi-Remote
 
-Текущий remote:
+Создан пустой приватный репозиторий-зеркало в GitLab:
 
 ```text
-origin  https://github.com/MatuhaBtww/devops-course-2026.git
+git@gitlab.com:mazafaker/devops-course-2026-mirror.git
 ```
 
-Для полного выполнения задания нужно создать второй пустой репозиторий-зеркало, например:
-
-```text
-git@github.com:MatuhaBtww/devops-course-2026-mirror.git
-```
-
-После создания mirror-репозитория команды будут такими:
+К основному репозиторию добавлен второй remote `gitlab`, после чего в зеркало отправлены все локальные ветки и теги:
 
 ```bash
-git remote add mirror git@github.com:MatuhaBtww/devops-course-2026-mirror.git
-git push mirror --all
-git push mirror --tags
-git remote set-url --add --push origin git@github.com:MatuhaBtww/devops-course-2026.git
-git remote set-url --add --push origin git@github.com:MatuhaBtww/devops-course-2026-mirror.git
-git remote -v
+git remote add gitlab git@gitlab.com:mazafaker/devops-course-2026-mirror.git
+git push gitlab --all
+git push gitlab --tags
 ```
+
+Результат `git remote -v` после настройки:
+
+```text
+gitlab  git@gitlab.com:mazafaker/devops-course-2026-mirror.git (fetch)
+gitlab  git@gitlab.com:mazafaker/devops-course-2026-mirror.git (push)
+origin  https://github.com/MatuhaBtww/devops-course-2026.git (fetch)
+origin  https://github.com/MatuhaBtww/devops-course-2026.git (push)
+origin  git@gitlab.com:mazafaker/devops-course-2026-mirror.git (push)
+```
+
+В `origin` настроены два push-URL, поэтому команда `git push origin main` одновременно отправляет изменения в GitHub и GitLab. Проверка выполнена коммитом `chore: test multi-remote push`.
 
 ## Задание 5. Cherry-pick, Reflog, Revert
 

@@ -24,3 +24,5 @@
 - `hobby.md` - описание пет-проекта.
 - `ide_notes.md` - заметки о работе с Git в VS Code.
 - `svn_comparison.md` - сравнение Git и SVN.
+
+# Multi-remote test
